@@ -1,9 +1,10 @@
 import request = require('request');
-import ProxyHttpRequest from '../interfaces/proxy-http-request';
+
 import GigyaResponse from '../interfaces/gigya-response';
+import {Headers} from "request";
+import ProxyHttpRequest from '../interfaces/proxy-http-request';
 import fs = require('fs');
 import path = require('path');
-import {Headers} from "request";
 
 let certificate: string;
 let verboseHttpError = process.env['GIGYA_VERBOSE_HTTP_LOGGING'];
@@ -34,7 +35,6 @@ export const httpRequest: ProxyHttpRequest = <R>(endpoint: string, host: string,
         request.post(uri, {
             method: httpMethod,
             form: requestParams,
-            ca: getCertificate(),
             headers
         }, (error, response, body) => {
             log(`request to ${uri} took ${(new Date().getTime() - start) / 1000} seconds`);
