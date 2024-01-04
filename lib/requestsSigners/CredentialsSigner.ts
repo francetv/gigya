@@ -1,7 +1,8 @@
+import {GigyaRequest, RequestParams} from "../RequestFactory";
 import {SecretCredentials, SimpleRequestSigner} from "./SimpleRequestSigner";
+
 import {DataCenter} from "../gigya";
 import SigUtils from '../sig-utils';
-import {GigyaRequest, RequestParams} from "../RequestFactory";
 
 const strictUriEncode = require('strict-uri-encode') as (str: string) => string;
 
@@ -24,7 +25,7 @@ export class CredentialsSigner extends SimpleRequestSigner {
         const effectiveSecret = requestParams.secret;
 
         // clear previous authentications
-        delete requestParams.secret;
+        //delete requestParams.secret;
         delete requestParams.sig;
 
         if (effectiveSecret) {

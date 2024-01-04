@@ -32,7 +32,7 @@ var CredentialsSigner = /** @class */ (function (_super) {
         var requestParams = request.params;
         var effectiveSecret = requestParams.secret;
         // clear previous authentications
-        delete requestParams.secret;
+        //delete requestParams.secret;
         delete requestParams.sig;
         if (effectiveSecret) {
             requestParams.timestamp = Date.now();
