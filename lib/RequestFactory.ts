@@ -1,5 +1,7 @@
 import BaseParams, {DataCenter} from "./interfaces/base-params";
+
 import {Headers} from "request";
+
 import _ = require("lodash");
 
 export interface FormatJsonRequest {
@@ -52,7 +54,7 @@ export class RequestFactory {
             endpoint,
             params: this.getRequestParams(userParams),
             headers: {},
-            skipSigning: isOAuth || this.isAnonymousEndpoint(endpoint)
+            skipSigning: false
         } as GigyaRequest;
 
         return request;
