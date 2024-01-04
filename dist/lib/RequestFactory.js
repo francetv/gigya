@@ -29,7 +29,7 @@ var RequestFactory = /** @class */ (function () {
             endpoint: endpoint,
             params: this.getRequestParams(userParams),
             headers: {},
-            skipSigning: true
+            skipSigning: isOAuth || this.isAnonymousEndpoint(endpoint)
         };
         return request;
     };
