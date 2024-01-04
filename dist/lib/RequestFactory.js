@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RequestFactory = void 0;
 var _ = require("lodash");
 var RequestFactory = /** @class */ (function () {
     function RequestFactory(_apiKey, _dataCenter) {
@@ -39,7 +40,7 @@ var RequestFactory = /** @class */ (function () {
         ].includes(endpoint);
     };
     RequestFactory.prototype.getRequestHost = function (namespace, dataCenter) {
-        return namespace + "." + dataCenter + "." + (dataCenter != 'cn1' ? 'gigya.com' : 'gigya-api.cn');
+        return "".concat(namespace, ".").concat(dataCenter, ".").concat(dataCenter != 'cn1' ? 'gigya.com' : 'gigya-api.cn');
     };
     RequestFactory.prototype.getRequestParams = function (userParams) {
         return _.assignIn(_.mapValues(userParams, function (value) {

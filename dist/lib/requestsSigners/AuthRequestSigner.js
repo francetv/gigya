@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthRequestSigner = exports.isCredentials = void 0;
 function isCredentials(credentials) {
     return !!credentials.userKey;
 }

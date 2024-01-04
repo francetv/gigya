@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SigUtils = void 0;
 var crypto = require("crypto");
 /**
  * This class is a utility class with static methods for calculating and validating cryptographic signatures.
@@ -22,7 +23,7 @@ var SigUtils = /** @class */ (function () {
      * Use this method to verify the authenticity of a socialize.getUserInfo API method response, to make sure that it is in fact originating from Gigya, and prevent fraud.
      */
     SigUtils.prototype.validateUserSignature = function (UID, timestamp, signature, secret) {
-        var baseString = timestamp + "_" + UID;
+        var baseString = "".concat(timestamp, "_").concat(UID);
         var expectedSig = this.calcSignature(baseString, secret);
         return expectedSig === signature;
     };
@@ -30,7 +31,7 @@ var SigUtils = /** @class */ (function () {
      * Use this method to verify the authenticity of a socialize.getFriendsInfo API method response, to make sure that it is in fact originating from Gigya, and prevent fraud.
      */
     SigUtils.prototype.validateFriendSignature = function (UID, timestamp, friendUID, signature, secret) {
-        var baseString = timestamp + "_" + friendUID + "_" + UID;
+        var baseString = "".concat(timestamp, "_").concat(friendUID, "_").concat(UID);
         var expectedSig = this.calcSignature(baseString, secret);
         return expectedSig === signature;
     };
@@ -44,7 +45,7 @@ var SigUtils = /** @class */ (function () {
         var expirationTimeUnix = Math.round((Date.now() / 1000) + timeoutInSeconds);
         var unsignedExpString = loginToken + '_' + expirationTimeUnix;
         var signedExpString = this.calcSignature(unsignedExpString, secret);
-        return expirationTimeUnix + "_" + signedExpString;
+        return "".concat(expirationTimeUnix, "_").concat(signedExpString);
     };
     return SigUtils;
 }());

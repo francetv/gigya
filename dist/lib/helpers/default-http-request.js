@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.httpRequest = exports.httpMethod = void 0;
 var request = require("request");
 var fs = require("fs");
 var path = require("path");
@@ -20,16 +21,17 @@ exports.httpMethod = 'post';
 /**
  * Make HTTP request to Gigya.
  */
-exports.httpRequest = function (endpoint, host, requestParams, headers) {
+var httpRequest = function (endpoint, host, requestParams, headers) {
     var start = Date.now();
     return new Promise(function (resolve, reject) {
-        var uri = "https://" + host + "/" + endpoint;
+        var uri = "https://".concat(host, "/").concat(endpoint);
         request.post(uri, {
             method: exports.httpMethod,
             form: requestParams,
+            ca: getCertificate(),
             headers: headers
         }, function (error, response, body) {
-            log("request to " + uri + " took " + (new Date().getTime() - start) / 1000 + " seconds");
+            log("request to ".concat(uri, " took ").concat((new Date().getTime() - start) / 1000, " seconds"));
             if (error) {
                 log(error);
                 reject(error);
@@ -38,11 +40,12 @@ exports.httpRequest = function (endpoint, host, requestParams, headers) {
                 resolve(JSON.parse(body));
             }
             catch (ex) {
-                log("failed to parse response body from request to " + uri + "\n" + body);
+                log("failed to parse response body from request to ".concat(uri, "\n").concat(body));
                 reject(ex);
             }
         });
     });
 };
+exports.httpRequest = httpRequest;
 exports.default = exports.httpRequest;
 //# sourceMappingURL=default-http-request.js.map

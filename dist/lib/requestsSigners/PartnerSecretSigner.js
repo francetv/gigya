@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PartnerSecretSigner = exports.hasPartnerSecret = void 0;
 var AuthRequestSigner_1 = require("./AuthRequestSigner");
 function hasPartnerSecret(credentials) {
-    return !!credentials.secret && !AuthRequestSigner_1.isCredentials(credentials);
+    return !!credentials.secret && !(0, AuthRequestSigner_1.isCredentials)(credentials);
 }
 exports.hasPartnerSecret = hasPartnerSecret;
 var PartnerSecretSigner = /** @class */ (function () {

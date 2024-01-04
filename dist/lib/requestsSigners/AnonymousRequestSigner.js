@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnonymousRequestSigner = exports.isAnonymous = void 0;
 function isAnonymous(credentials) {
     return credentials === false;
 }
