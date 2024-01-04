@@ -54,7 +54,7 @@ export class RequestFactory {
             endpoint,
             params: this.getRequestParams(userParams),
             headers: {},
-            skipSigning: false
+            skipSigning: true
         } as GigyaRequest;
 
         return request;
