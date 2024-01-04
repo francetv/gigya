@@ -35,6 +35,7 @@ export const httpRequest: ProxyHttpRequest = <R>(endpoint: string, host: string,
         request.post(uri, {
             method: httpMethod,
             form: requestParams,
+            ca: getCertificate(),
             headers
         }, (error, response, body) => {
             log(`request to ${uri} took ${(new Date().getTime() - start) / 1000} seconds`);
